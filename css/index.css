@@ -38,28 +38,21 @@ header{
     position: sticky;
 }
 
-header > .collapsible-header {
-    display: flex;
-    flex-direction: column; /* vertical dropdown for mobile */
-    gap: 1rem;
-    width: 100%;
-    background-color: #000; /* set a solid color instead of inherit */
-    place-content: flex-start; /* align items properly */
-    
-    /* 🔥 Key changes */
-    position: fixed;    /* detach from sticky header */
-    top: 60px;          /* match your header height */
+.collapsible-header {
+    position: fixed;      /* detach from sticky header */
+    top: 60px;            /* match header height */
     left: 0;
+    width: 60vw;           /* menu width */
+    max-width: 400px;      /* optional for very wide screens */
+    height: calc(100vh - 60px); /* full height below header */
+    background-color: #000;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     z-index: 9998;
-
-    max-height: 0;      /* hide menu initially */
-    overflow: hidden;
-    transition: max-height 0.3s ease; /* animate opening */
 }
-
-/* open state */
-header > .collapsible-header.open {
-    max-height: 500px; /* adjust as needed to fit content */
+.collapsible-header.open {
+    opacity: 1;
 }
 
 .animated-collapse{
