@@ -39,13 +39,16 @@ header{
 }
 
 header > .collapsible-header{
-    display: sticky;
-    gap: 1rem;
-    width: 100%;
-    background-color: inherit;
-    place-content: center;
-    overflow: hidden;
-    transition: width 0.3s ease;
+    position: fixed;   /* 🔥 key */
+  top: 60px;         /* match your header height */
+  left: 0;
+  width: 100%;
+  background: black;
+  z-index: 9998;
+
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }
 
 .animated-collapse{
