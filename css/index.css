@@ -35,6 +35,7 @@ header{
 }
 
 
+
 @media (max-width: 1024px) {
     header > .collapsible-header {
         position: fixed !important; 
@@ -55,14 +56,13 @@ header{
 /* For PC (Larger than 1024px) */
 @media (min-width: 1025px) {
     header > .collapsible-header {
-        position: absolute !important; /* Resets it to its normal spot */
+        position: sticky !important; /* Resets it to its normal spot */
         height: auto !important;
         width: auto !important;
         flex-direction: row !important;
         background-color: transparent !important;
         opacity: 1 !important;
     }
-
 
 .animated-collapse{
     transition: width 0.3s ease;
