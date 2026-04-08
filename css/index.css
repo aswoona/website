@@ -50,6 +50,7 @@ header > .collapsible-header{
 
 .animated-collapse{
     transition: width 0.3s ease;
+    max-height: 500px;
 }
 
 
