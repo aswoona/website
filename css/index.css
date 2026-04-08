@@ -39,7 +39,7 @@ header{
 }
 
 header > .collapsible-header{
-    display: flex;
+    display: sticky;
     gap: 1rem;
     width: 100%;
     background-color: inherit;
@@ -50,7 +50,6 @@ header > .collapsible-header{
 
 .animated-collapse{
     transition: width 0.3s ease;
-    max-height: 500px;
 }
 
 
