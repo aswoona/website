@@ -36,59 +36,47 @@ header{
 
 
 
-/* --- 1. GLOBAL BASE (Shared) --- */
-header > .collapsible-header {
-    display: flex;
-    background-color: inherit;
-}
-
-/* --- 2. MOBILE DRAWER (Only < 1024px) --- */
+/* --- MOBILE DRAWER (< 1024px) --- */
 @media (max-width: 1024px) {
     #collapsed-header-items {
+        /* Force it to be a fixed sidebar */
         position: fixed !important;
-        top: 0;
-        right: -100% !important; /* Start off-screen */
+        top: 0 !important;
+        right: 0 !important;
         width: 80vw !important;
         height: 100vh !important;
-        background: #000 !important;
-        z-index: 90 !important;
-        transition: right 0.4s ease-in-out !important;
+        background-color: #000 !important;
+        z-index: 9999 !important;
+        
+        /* Start it hidden off-screen to the right */
+        transform: translateX(100%) !important; 
+        transition: transform 0.4s ease-in-out !important;
+        
         display: flex !important;
         flex-direction: column !important;
-        padding: 80px 20px;
-        overflow-y: auto;
+        padding: 80px 20px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
-    /* Logic to slide in */
+    /* THE TRIGGER: When 'nav-open' is on the body, SLIDE IN */
     body.nav-open #collapsed-header-items {
-        right: 0 !important;
+        transform: translateX(0) !important;
     }
 }
 
-/* --- 3. DESKTOP RESET (PC > 1025px) --- */
+/* --- DESKTOP RESET (> 1025px) --- */
 @media (min-width: 1025px) {
     #collapsed-header-items {
         position: static !important;
-        width: 100% !important; /* Take up the remaining header space */
+        transform: none !important; /* Kill the mobile slide-out */
+        width: auto !important;
         height: auto !important;
         display: flex !important;
-        flex-direction: row !important; /* Side by side */
-        justify-content: space-around !important;
+        flex-direction: row !important;
         background: transparent !important;
-        opacity: 1 !important;
         visibility: visible !important;
-    }
-
-    /* RESET THE INNER DIV (The one with all the links) */
-    #collapsed-header-items > div {
-        flex-direction: row !important; /* Force links to stay in a row */
-        margin-top: 0 !important;
-        width: auto !important;
-        place-items: center !important;
-    }
-
-    #collapse-btn {
-        display: none !important;
+        opacity: 1 !important;
     }
 }
 
