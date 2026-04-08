@@ -18,27 +18,29 @@ function onHeaderClickOutside(e) {
 }
 
 
-function toggleHeader() {
-    // 1. Guard for PC: Do nothing if screen is large
-    if (window.innerWidth > 1024) return;
+// Make sure this variable is declared outside the function
+let isHeaderCollapsed = true;
 
+function toggleHeader() {
     const menu = document.getElementById("collapsed-header-items");
     const btn = document.getElementById("collapse-btn");
 
-    // 2. Toggle the visibility class
+    // Toggle the class that handles the sliding
     menu.classList.toggle("is-open");
 
-    // 3. Update the button icon
     if (menu.classList.contains("is-open")) {
+        // OPEN STATE
         btn.classList.replace("bi-list", "bi-x");
-        // Add fixed to the button so it stays on screen while menu is open
-        btn.classList.add("tw-fixed");
+        btn.classList.add("tw-fixed"); // Keep button visible on top of drawer
+        isHeaderCollapsed = false;
         
-        // Listen for clicks outside to close
         setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 100);
     } else {
+        // CLOSED STATE
         btn.classList.replace("bi-x", "bi-list");
         btn.classList.remove("tw-fixed");
+        isHeaderCollapsed = true;
+        
         window.removeEventListener("click", onHeaderClickOutside);
     }
 }

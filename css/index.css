@@ -46,44 +46,46 @@ header > .collapsible-header{
     transition: width 0.3s ease;
 }
 
-/* --- MOBILE MODE (0px to 1024px) --- */
+/* --- SHARED / PC BASE --- */
+header > .collapsible-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* On PC, this is always visible and normal */
+}
+
+/* --- MOBILE DRAWER (Only applies on screens < 1024px) --- */
 @media screen and (max-width: 1024px) {
     header > .collapsible-header {
         position: fixed !important;
         top: 0;
-        right: 0;
-        height: 100vh;
-        width: 0; /* JS will change this to 60vw */
-        opacity: 0;
-        visibility: hidden;
-        flex-direction: column;
-        background-color: #000;
-        z-index: 40;
-        transition: all 0.3s ease;
+        right: -100%; /* Start completely off-screen to the right */
+        width: 70vw !important;
+        height: 100vh !important;
+        background-color: #000 !important;
+        flex-direction: column !important;
+        padding-top: 80px;
+        transition: right 0.3s ease-in-out !important; /* Slide animation */
+        z-index: 40 !important;
         display: flex !important;
     }
 
-    /* This class is added by JS to show the menu */
+    /* THE TRIGGER: When this class is added, the menu slides in */
     header > .collapsible-header.is-open {
-        width: 60vw !important;
-        opacity: 1 !important;
-        visibility: visible !important;
+        right: 0 !important; /* Slide into view */
     }
 }
 
-/* --- DESKTOP MODE (1025px and up) --- */
+/* --- PC RESET (Only applies on screens > 1025px) --- */
 @media screen and (min-width: 1025px) {
     header > .collapsible-header {
-        /* Kill all mobile drawer behavior */
         position: static !important;
+        right: auto !important;
         width: auto !important;
         height: auto !important;
+        display: flex !important;
         opacity: 1 !important;
         visibility: visible !important;
-        display: flex !important;
-        flex-direction: row !important;
-        background-color: transparent !important;
-        pointer-events: auto !important;
     }
     
     #collapse-btn {
