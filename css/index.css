@@ -35,57 +35,34 @@ header{
 }
 
 
-header > .collapsible-header{
-    position: fixed !important; 
-        top: 0;
-        right: 0;
-        height: 100vh; /* Make it full height for mobile */
-        flex-direction: column;
-        background-color: #000; /* Ensure it has a solid background */
-        z-index: 40;
-        /* width is handled by your JS (0vw to 60vw) */
-}
-
-/* --- PC / DESKTOP SETTINGS --- */
-@media (min-width: 1025px) {
-    #collapsed-header-items {
-        display: flex !important;
-        position: static !important; /* Back to normal layout */
-        width: auto !important;
-        height: auto !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        flex-direction: row !important;
-        background: transparent !important;
-    }
-    
-    #collapse-btn {
-        display: none !important; /* Hide burger on PC */
-    }
-}
-
-/* --- MOBILE SETTINGS --- */
 @media (max-width: 1024px) {
-    #collapsed-header-items {
-        position: fixed !important;
+    header > .collapsible-header {
+        position: fixed !important; 
         top: 0;
         right: 0;
         height: 100vh;
-        width: 0; /* Start closed */
-        overflow: hidden;
-        display: flex;
         flex-direction: column;
         background-color: #000;
-        transition: width 0.3s ease;
-        z-index: 999;
-    }
-
-    /* When the JS toggles this class, the menu slides out */
-    #collapsed-header-items.is-open {
-        width: 70vw !important; 
-        opacity: 1 !important;
+        z-index: 40;
+        /* Width is still handled by your JS */
+        
+        /* Optional: Add this to ensure it's hidden when width is 0 */
+        overflow: hidden; 
+        display: flex;
     }
 }
+
+/* For PC (Larger than 1024px) */
+@media (min-width: 1025px) {
+    header > .collapsible-header {
+        position: static !important; /* Resets it to its normal spot */
+        height: auto !important;
+        width: auto !important;
+        flex-direction: row !important;
+        background-color: transparent !important;
+        opacity: 1 !important;
+    }
+
 
 .animated-collapse{
     transition: width 0.3s ease;
