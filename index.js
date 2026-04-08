@@ -20,7 +20,6 @@ function onHeaderClickOutside(e) {
 
 
 
-
 function responsive() {
     if (window.innerWidth > RESPONSIVE_WIDTH) {
         collapseHeaderItems.style.width = ""
