@@ -36,7 +36,7 @@ header{
 
 
 header > .collapsible-header{
-    position: fixed; 
+    position: fixed !important; 
         top: 0;
         right: 0;
         height: 100vh; /* Make it full height for mobile */
