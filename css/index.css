@@ -38,20 +38,22 @@ header{
     position: sticky;
 }
 
-.collapsible-header {
-    position: fixed;      /* detach from sticky header */
-    top: 60px;            /* match header height */
+header > .collapsible-header {
+    position: fixed;        /* detach from sticky parent */
+    top: 60px;              /* header height */
     left: 0;
-    width: 60vw;           /* menu width */
-    max-width: 400px;      /* optional for very wide screens */
-    height: calc(100vh - 60px); /* full height below header */
-    background-color: #000;
+    width: 100%;            /* or 60vw for sidebar style */
+    max-height: 0;          /* hidden */
     overflow-y: auto;
+    background-color: #000; /* solid background */
     opacity: 0;
-    transition: opacity 0.3s ease;
     z-index: 9998;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 }
-.collapsible-header.open {
+
+/* Open state */
+header > .collapsible-header.open {
+    max-height: 100vh;      /* fully expands below header */
     opacity: 1;
 }
 
