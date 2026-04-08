@@ -9,25 +9,58 @@ const collapseHeaderItems = document.getElementById("collapsed-header-items")
 
 
 
-function toggleHeader(event) {
-    if (event) event.stopPropagation();
-    
-    const body = document.body;
-    const btn = document.getElementById("collapse-btn");
-    
-    // Toggle the class
-    const isOpen = body.classList.toggle("nav-open");
+function onHeaderClickOutside(e) {
 
-    // Update Icon & Scroll
-    if (isOpen) {
-        btn.classList.replace("bi-list", "bi-x");
-        body.style.overflow = "hidden"; // Prevent background scroll
+    if (!collapseHeaderItems.contains(e.target)) {
+        toggleHeader()
+    }
+
+}
+
+
+function toggleHeader() {
+    const collapseHeaderItems = document.getElementById("collapsed-header-items");
+    const collapseBtn = document.getElementById("collapse-btn");
+
+    if (isHeaderCollapsed) {
+        // OPEN MENU
+        collapseHeaderItems.classList.add("opacity-100");
+        collapseHeaderItems.style.width = "60vw"; // This triggers the transition
+        
+        collapseBtn.classList.remove("bi-list");
+        collapseBtn.classList.add("bi-x");
+        
+        isHeaderCollapsed = false;
+
+        // Increase timeout to 100ms to prevent mobile "ghost" clicks 
+        // from closing the menu immediately
+        setTimeout(() => {
+            window.addEventListener("click", onHeaderClickOutside);
+        }, 100);
+
     } else {
-        btn.classList.replace("bi-x", "bi-list");
-        body.style.overflow = "auto";
+        // CLOSE MENU
+        collapseHeaderItems.classList.remove("opacity-100");
+        collapseHeaderItems.style.width = "0vw";
+        
+        collapseBtn.classList.remove("bi-x");
+        collapseBtn.classList.add("bi-list");
+        
+        isHeaderCollapsed = true;
+        window.removeEventListener("click", onHeaderClickOutside);
     }
 }
 
+
+
+function responsive() {
+    if (window.innerWidth > RESPONSIVE_WIDTH) {
+        collapseHeaderItems.style.width = ""
+
+    } else {
+        isHeaderCollapsed = true
+    }
+}
 
 window.addEventListener("resize", responsive)
 
