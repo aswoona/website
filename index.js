@@ -19,30 +19,52 @@ function onHeaderClickOutside(e) {
 
 
 // Make sure this variable is declared outside the function
-let isHeaderCollapsed = true;
+let isHeaderOpen = false;
 
-function toggleHeader() {
+function toggleHeader(event) {
+    if (event) event.stopPropagation(); // Prevents the 'click outside' from firing immediately
+
     const menu = document.getElementById("collapsed-header-items");
     const btn = document.getElementById("collapse-btn");
 
-    // Toggle the class that handles the sliding
-    menu.classList.toggle("is-open");
+    isHeaderOpen = !isHeaderOpen;
 
-    if (menu.classList.contains("is-open")) {
-        // OPEN STATE
+    if (isHeaderOpen) {
+        // OPEN: Move from right-[-100%] to right-0
+        menu.classList.remove("tw-right-[-100%]");
+        menu.classList.add("tw-right-0");
+        
         btn.classList.replace("bi-list", "bi-x");
-        btn.classList.add("tw-fixed"); // Keep button visible on top of drawer
-        isHeaderCollapsed = false;
         
-        setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 100);
+        // Only add the listener AFTER the menu is open
+        setTimeout(() => {
+            window.addEventListener("click", closeMenuOnClickOutside);
+        }, 100);
     } else {
-        // CLOSED STATE
-        btn.classList.replace("bi-x", "bi-list");
-        btn.classList.remove("tw-fixed");
-        isHeaderCollapsed = true;
-        
-        window.removeEventListener("click", onHeaderClickOutside);
+        forceClose();
     }
+}
+
+function closeMenuOnClickOutside(e) {
+    const menu = document.getElementById("collapsed-header-items");
+    const btn = document.getElementById("collapse-btn");
+
+    // If click is NOT on the menu and NOT on the button, close it
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        forceClose();
+    }
+}
+
+function forceClose() {
+    const menu = document.getElementById("collapsed-header-items");
+    const btn = document.getElementById("collapse-btn");
+    
+    menu.classList.remove("tw-right-0");
+    menu.classList.add("tw-right-[-100%]");
+    btn.classList.replace("bi-x", "bi-list");
+    
+    isHeaderOpen = false;
+    window.removeEventListener("click", closeMenuOnClickOutside);
 }
 
 window.addEventListener('resize', () => {
