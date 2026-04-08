@@ -36,46 +36,62 @@ header{
 
 
 
-/* MOBILE DRAWER LOGIC */
-@media (max-width: 1024px) {
-    #collapsed-header-items {
-        /* Force it to be a sidebar */
-        position: fixed !important;
-        top: 0 !important;
-        right: 0 !important;
-        width: 280px !important; /* Fixed width sidebar */
-        height: 100vh !important;
-        background-color: #111 !important; /* Solid dark background */
-        z-index: 10000 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 100px 30px !important;
-        
-        /* Start hidden to the right */
-        transform: translateX(100%) !important;
-        transition: transform 0.3s ease-in-out !important;
-        
-        /* Fix visibility */
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    /* When body has .nav-open, slide the menu in */
-    body.nav-open #collapsed-header-items {
-        transform: translateX(0) !important;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5) !important;
-    }
+/* --- UNIVERSAL RESET --- */
+#collapsed-header-items {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
 }
 
-/* DESKTOP VIEW */
+/* --- PC: FIX ALIGNMENT (1025px+) --- */
 @media (min-width: 1025px) {
     #collapsed-header-items {
-        display: flex !important;
-        transform: none !important;
+        display: block !important;
         position: static !important;
+        transform: none !important;
         width: auto !important;
         height: auto !important;
         background: transparent !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .nav-links-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 2rem !important;
+        align-items: center !important;
+    }
+}
+
+/* --- MOBILE: SIDEBAR (1024px and below) --- */
+@media (max-width: 1024px) {
+    #collapsed-header-items {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: 280px !important; /* Sidebar width */
+        height: 100vh !important;
+        background-color: #0c0c0c !important; /* Solid black-gray */
+        z-index: 10000 !important;
+        padding: 80px 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        
+        /* Hidden state */
+        transform: translateX(100%) !important;
+        box-shadow: none;
+    }
+
+    /* Shown state */
+    body.nav-open #collapsed-header-items {
+        transform: translateX(0) !important;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5) !important;
+    }
+
+    .nav-links-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        align-items: flex-start !important;
     }
 }
 

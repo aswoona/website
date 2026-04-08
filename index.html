@@ -34,23 +34,24 @@
     <body
         class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
     >
-        <header class="headerscroll tw-fixed tw-top-0 tw-z-[999] tw-flex tw-h-[70px] tw-w-full tw-items-center tw-justify-between tw-bg-black/80 tw-backdrop-blur-md tw-px-[5%]">
+<header class="headerscroll tw-fixed tw-top-0 tw-left-0 tw-z-[999] tw-flex tw-h-[70px] tw-w-full tw-items-center tw-justify-between tw-bg-black/90 tw-backdrop-blur-md tw-px-[5%]">
     
-    <a class="tw-h-[50px] tw-w-[50px]" href="">
+    <a class="tw-flex tw-items-center tw-h-[50px] tw-w-[50px]" href="#">
         <img src="./assets/logo/logo.png" alt="logo" class="tw-h-full tw-w-full tw-object-contain" />
     </a>
 
     <div id="collapsed-header-items" class="collapsible-header">
-        <div class="tw-flex tw-gap-5 max-lg:tw-flex-col max-lg:tw-w-full">
-            <a class="header-links" href="#about"> Sobre mi </a>
-            <a class="header-links" href="#beneficios"> Beneficios </a>
-            <a class="header-links" href="#trabajos"> Servicios </a>
-            <a class="header-links" href="#pricing"> Precios </a>
-            <a class="header-links" href="#contacto"> Contacto </a>
+        <div class="nav-links-wrapper">
+            <a class="header-links" href="#about">Sobre mi</a>
+            <a class="header-links" href="#beneficios">Beneficios</a>
+            <a class="header-links" href="#trabajos">Servicios</a>
+            <a class="header-links" href="#pricing">Precios</a>
+            <a class="header-links" href="#contacto">Contacto</a>
+            <a class="header-links tw-text-xl" href="https://www.instagram.com/aswoona/"><i class="bi bi-instagram"></i></a>
         </div>
     </div>
 
-    <button id="collapse-btn" onclick="toggleHeader(event)" class="bi bi-list tw-text-3xl tw-text-white lg:tw-hidden"></button>
+    <button id="collapse-btn" onclick="toggleHeader(event)" class="bi bi-list tw-text-3xl tw-text-white lg:tw-hidden tw-relative tw-z-[10001]"></button>
 </header>
 
         <section

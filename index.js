@@ -12,34 +12,22 @@ const collapseHeaderItems = document.getElementById("collapsed-header-items")
 function toggleHeader(event) {
     if (event) event.stopPropagation();
     
-    // Toggle class on the BODY
-    const isOpen = document.body.classList.toggle("nav-open");
+    const body = document.body;
     const btn = document.getElementById("collapse-btn");
+    
+    // Toggle the class
+    const isOpen = body.classList.toggle("nav-open");
 
+    // Update Icon & Scroll
     if (isOpen) {
         btn.classList.replace("bi-list", "bi-x");
+        body.style.overflow = "hidden"; // Prevent background scroll
     } else {
         btn.classList.replace("bi-x", "bi-list");
+        body.style.overflow = "auto";
     }
 }
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024) {
-        const menu = document.getElementById("collapsed-header-items");
-        // Clear the inline styles so the Desktop CSS can take over
-        menu.style.width = "";
-        menu.style.opacity = "";
-    }
-});
-
-function responsive() {
-    if (window.innerWidth > RESPONSIVE_WIDTH) {
-        collapseHeaderItems.style.width = ""
-
-    } else {
-        isHeaderCollapsed = true
-    }
-}
 
 window.addEventListener("resize", responsive)
 
