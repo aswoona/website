@@ -51,6 +51,18 @@ function toggleHeader() {
     }
 }
 
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    
+    // Add a class to fade it out
+    preloader.classList.add('tw-opacity-0');
+    
+    // Completely remove it from the DOM after the fade animation finishes
+    setTimeout(() => {
+        preloader.style.display = 'none';
+    }, 500); // Matches the duration-500 in the HTML
+});
+
 function responsive() {
     if (window.innerWidth > RESPONSIVE_WIDTH) {
         collapseHeaderItems.style.width = ""
