@@ -36,17 +36,14 @@ header{
 
 
 
-header > .collapsible-header{
+/* 1. SHARED BASE STYLES (Keep it minimal) */
+header > .collapsible-header {
     display: flex;
     gap: 1rem;
-    width: 100%;
     background-color: inherit;
-    place-content: center;
-    overflow: hidden;
-    transition: width 0.3s ease;
 }
 
-/* --- 1. MOBILE DEFAULT (Closed State) --- */
+/* 2. MOBILE DRAWER (0px to 1024px) */
 @media (max-width: 1024px) {
     #collapsed-header-items {
         position: fixed !important;
@@ -56,29 +53,27 @@ header > .collapsible-header{
         height: 100vh !important;
         background: #000 !important;
         z-index: 999 !important;
-        transition: right 0.4s ease-in-out;
+        transition: right 0.4s ease-in-out; /* We animate RIGHT, not WIDTH */
         display: flex !important;
         flex-direction: column !important;
         padding: 80px 20px;
+        overflow-y: auto; /* Allow scrolling if menu is long */
     }
 
-    /* --- 2. MOBILE OPEN STATE --- */
-    /* When 'nav-open' is on the body, the menu slides in */
     body.nav-open #collapsed-header-items {
-        right: 0 !important;
+        right: 0 !important; /* Slide into view */
     }
 
-    /* Change the burger icon to an X when open */
     body.nav-open #collapse-btn::before {
-        content: "\f659"; /* Bootstrap Icons 'X' code */
+        content: "\f659"; 
     }
 }
 
-/* --- 3. DESKTOP RESET (PC) --- */
+/* 3. DESKTOP RESET (1025px and up) */
 @media (min-width: 1025px) {
     #collapsed-header-items {
         position: static !important;
-        width: auto !important;
+        width: auto !important; /* Let it sit naturally in the header */
         height: auto !important;
         display: flex !important;
         flex-direction: row !important;
@@ -86,10 +81,11 @@ header > .collapsible-header{
         visibility: visible !important;
         background: transparent !important;
         right: auto !important;
+        overflow: visible !important; /* Don't clip content on PC */
     }
 
     #collapse-btn {
-        display: none !important; /* Never show on PC */
+        display: none !important;
     }
 }
 
