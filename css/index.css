@@ -21,8 +21,12 @@ html {
 header{
     /* background-color: #fff;
     color: #000; */
-    color: #b1b1b1;
-    position: sticky;
+    position: sticky;  /* makes it stick */
+  top: 0;            /* distance from the top of viewport */
+  background-color: #fff; /* so content doesn’t show through */
+  z-index: 1000;     /* ensures it’s above other elements */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* optional, for nice separation */
 }
 
 
