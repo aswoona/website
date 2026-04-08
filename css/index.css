@@ -38,17 +38,28 @@ header{
     position: sticky;
 }
 
-header > .collapsible-header{
-    position: fixed;   /* 🔥 key */
-  top: 60px;         /* match your header height */
-  left: 0;
-  width: 100%;
-  background: black;
-  z-index: 9998;
+header > .collapsible-header {
+    display: flex;
+    flex-direction: column; /* vertical dropdown for mobile */
+    gap: 1rem;
+    width: 100%;
+    background-color: #000; /* set a solid color instead of inherit */
+    place-content: flex-start; /* align items properly */
+    
+    /* 🔥 Key changes */
+    position: fixed;    /* detach from sticky header */
+    top: 60px;          /* match your header height */
+    left: 0;
+    z-index: 9998;
 
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
+    max-height: 0;      /* hide menu initially */
+    overflow: hidden;
+    transition: max-height 0.3s ease; /* animate opening */
+}
+
+/* open state */
+header > .collapsible-header.open {
+    max-height: 500px; /* adjust as needed to fit content */
 }
 
 .animated-collapse{
