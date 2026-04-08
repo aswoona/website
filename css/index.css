@@ -35,38 +35,45 @@ header{
 }
 
 
-/* 1. DEFAULT/DESKTOP STYLES (PC) */
-header > .collapsible-header {
-    display: flex;
-    position: relative; /* Or whatever it was before */
-    width: auto;
-    height: auto;
-    opacity: 1 !important; /* Ensure it's visible on PC */
-    overflow: visible;
-    /* Remove any fixed/absolute positioning here for PC */
-}
-
-/* 2. MOBILE ONLY STYLES (The fix from before) */
-@media (max-width: 1024px) {
-    header > .collapsible-header {
-        position: fixed !important; 
+header > .collapsible-header{
+    position: fixed !important; 
         top: 0;
         right: 0;
-        height: 100vh;
-        width: 0vw; /* Managed by JS */
+        height: 100vh; /* Make it full height for mobile */
         flex-direction: column;
-        background-color: #000;
-        z-index: 9999;
-        transition: width 0.3s ease;
-        /* Re-enable the toggle logic for mobile */
-        display: flex; 
+        background-color: #000; /* Ensure it has a solid background */
+        z-index: 40;
+        /* width is handled by your JS (0vw to 60vw) */
+}
+
+@media (min-width: 1025px) {
+    #collapsed-header-items {
+        /* Reset positioning from fixed back to normal flow */
+        position: relative !important; 
+        top: auto !important;
+        right: auto !important;
+        
+        /* Reset dimensions */
+        width: auto !important; 
+        height: auto !important;
+        
+        /* Reset layout to horizontal */
+        display: flex !important;
+        flex-direction: row !important;
+        
+        /* Ensure it's always visible on PC */
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        
+        /* Remove mobile background/shadows */
+        background-color: transparent !important;
+        box-shadow: none !important;
     }
 
-    /* Ensure it starts hidden on mobile until JS triggers it */
-    #collapsed-header-items:not(.opacity-100) {
-        width: 0vw !important;
-        opacity: 0;
-        pointer-events: none;
+    /* Hide the hamburger button on PC just in case */
+    #collapse-btn {
+        display: none !important;
     }
 }
 
