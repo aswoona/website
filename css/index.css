@@ -55,7 +55,7 @@ header{
 /* For PC (Larger than 1024px) */
 @media (min-width: 1025px) {
     header > .collapsible-header {
-        position: static !important; /* Resets it to its normal spot */
+        position: absolute !important; /* Resets it to its normal spot */
         height: auto !important;
         width: auto !important;
         flex-direction: row !important;
