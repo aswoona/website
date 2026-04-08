@@ -36,58 +36,6 @@ header{
 
 
 
-/* --- 1. PC / DESKTOP RESET (1025px and up) --- */
-@media (min-width: 1025px) {
-    #collapsed-header-items {
-        display: flex !important;
-        position: static !important; /* Back into the header flow */
-        flex-direction: row !important;
-        width: 100% !important;
-        height: auto !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-        background: transparent !important;
-        justify-content: space-around !important;
-    }
-
-    /* Reset the internal div with the links */
-    #collapsed-header-items > div {
-        flex-direction: row !important;
-        display: flex !important;
-        width: auto !important;
-        margin: 0 !important;
-    }
-
-    #collapse-btn {
-        display: none !important; /* Hide burger on PC */
-    }
-}
-
-/* --- 2. MOBILE DRAWER (1024px and down) --- */
-@media (max-width: 1024px) {
-    #collapsed-header-items {
-        position: fixed !important;
-        top: 0;
-        right: 0 !important;
-        width: 80vw !important;
-        height: 100vh !important;
-        background-color: #000 !important;
-        z-index: 999 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 80px 20px !important;
-        
-        /* HIDDEN STATE: Move it off-screen */
-        transform: translateX(100%); 
-        transition: transform 0.4s ease-in-out !important;
-    }
-
-    /* OPEN STATE: Slide it in when the body has the class */
-    body.nav-open #collapsed-header-items {
-        transform: translateX(0) !important;
-    }
-}
 
 .animated-collapse{
     transition: width 0.3s ease;
