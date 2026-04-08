@@ -46,50 +46,50 @@ header > .collapsible-header{
     transition: width 0.3s ease;
 }
 
-/* --- SHARED / PC BASE --- */
-header > .collapsible-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    /* On PC, this is always visible and normal */
-}
-
-/* --- MOBILE DRAWER (Only applies on screens < 1024px) --- */
-@media screen and (max-width: 1024px) {
-    header > .collapsible-header {
+/* --- 1. MOBILE DEFAULT (Closed State) --- */
+@media (max-width: 1024px) {
+    #collapsed-header-items {
         position: fixed !important;
         top: 0;
-        right: -100%; /* Start completely off-screen to the right */
-        width: 70vw !important;
+        right: -100%; /* Hidden off-screen */
+        width: 80vw !important;
         height: 100vh !important;
-        background-color: #000 !important;
-        flex-direction: column !important;
-        padding-top: 80px;
-        transition: right 0.3s ease-in-out !important; /* Slide animation */
-        z-index: 40 !important;
+        background: #000 !important;
+        z-index: 999 !important;
+        transition: right 0.4s ease-in-out;
         display: flex !important;
+        flex-direction: column !important;
+        padding: 80px 20px;
     }
 
-    /* THE TRIGGER: When this class is added, the menu slides in */
-    header > .collapsible-header.is-open {
-        right: 0 !important; /* Slide into view */
+    /* --- 2. MOBILE OPEN STATE --- */
+    /* When 'nav-open' is on the body, the menu slides in */
+    body.nav-open #collapsed-header-items {
+        right: 0 !important;
+    }
+
+    /* Change the burger icon to an X when open */
+    body.nav-open #collapse-btn::before {
+        content: "\f659"; /* Bootstrap Icons 'X' code */
     }
 }
 
-/* --- PC RESET (Only applies on screens > 1025px) --- */
-@media screen and (min-width: 1025px) {
-    header > .collapsible-header {
+/* --- 3. DESKTOP RESET (PC) --- */
+@media (min-width: 1025px) {
+    #collapsed-header-items {
         position: static !important;
-        right: auto !important;
         width: auto !important;
         height: auto !important;
         display: flex !important;
+        flex-direction: row !important;
         opacity: 1 !important;
         visibility: visible !important;
+        background: transparent !important;
+        right: auto !important;
     }
-    
+
     #collapse-btn {
-        display: none !important;
+        display: none !important; /* Never show on PC */
     }
 }
 
