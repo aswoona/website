@@ -19,17 +19,26 @@ function onHeaderClickOutside(e) {
 
 
 function toggleHeader() {
+    // 1. Guard for PC: Do nothing if screen is large
+    if (window.innerWidth > 1024) return;
+
     const menu = document.getElementById("collapsed-header-items");
     const btn = document.getElementById("collapse-btn");
 
-    // Just toggle one class. CSS will handle the rest!
+    // 2. Toggle the visibility class
     menu.classList.toggle("is-open");
-    
+
+    // 3. Update the button icon
     if (menu.classList.contains("is-open")) {
         btn.classList.replace("bi-list", "bi-x");
+        // Add fixed to the button so it stays on screen while menu is open
+        btn.classList.add("tw-fixed");
+        
+        // Listen for clicks outside to close
         setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 100);
     } else {
         btn.classList.replace("bi-x", "bi-list");
+        btn.classList.remove("tw-fixed");
         window.removeEventListener("click", onHeaderClickOutside);
     }
 }
