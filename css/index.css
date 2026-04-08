@@ -36,9 +36,6 @@ header{
 
 .headerscroll2 {
     position: sticky;
-  top: 0;
-  background: #000000;
-  color: #f1f1f1;
 }
 
 header > .collapsible-header{
