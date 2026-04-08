@@ -34,46 +34,24 @@
     <body
         class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
     >
-        <header
-            class="headerscroll tw-max-w-lg:tw-px-4 tw-max-w-lg:tw-mr-auto tw-absolute tw-top-0 tw-z-20 tw-flex tw-h-[60px] tw-w-full tw-bg-opacity-0 tw-px-[5%] lg:tw-justify-around"
-        >
-            <a class="tw-h-[50px] tw-w-[50px] tw-p-[4px]" href="">
-                <img
-                    src="./assets/logo/logo.png"
-                    alt="logo"
-                    class="tw-object tw-h-full tw-w-full"
-                />
-            </a>
-            <div
-                class=" collapsible-header animated-collapse max-lg:tw-shadow-md"
-                id="collapsed-header-items"
-            >
-                <div
-                     class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
-                >
-                    <a class="header-links" href="#about"> Sobre mi </a>
-                    <a class="header-links" href="#beneficios"> Beneficios </a>
-                    <a class="header-links" href="#trabajos"> Servicios </a>
-                    <a class="header-links" href="#Servicios"> Trabajos </a>
-                    <a class="header-links" href="#pricing"> Precios </a>
-                    <a class="header-links" href="#clientes"> Clientes </a>
-                    <a class="header-links" href="#contacto"> Contacto </a>
-                    <a class="header-links" href="https://www.instagram.com/aswoona/"> <i class="bi bi-instagram"></i></a>
-                </div>
-                <div
-                    class="tw-mx-4 tw-flex tw-place-items-center tw-gap-[20px] tw-text-base max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center"
-                >
-                    <a
-                        href="https://www.instagram.com/aswoona/"
-                        aria-label="signup"
-                        class="tw-rounded-full tw-bg-white tw-px-3 tw-py-2 tw-text-black tw-transition-transform tw-duration-[0.3s] hover:tw-translate-x-2"
-                    >
-                        <span>Comienza ya</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </header>
+        <header class="headerscroll tw-fixed tw-top-0 tw-z-[999] tw-flex tw-h-[70px] tw-w-full tw-items-center tw-justify-between tw-bg-black/80 tw-backdrop-blur-md tw-px-[5%]">
+    
+    <a class="tw-h-[50px] tw-w-[50px]" href="">
+        <img src="./assets/logo/logo.png" alt="logo" class="tw-h-full tw-w-full tw-object-contain" />
+    </a>
+
+    <div id="collapsed-header-items" class="collapsible-header">
+        <div class="tw-flex tw-gap-5 max-lg:tw-flex-col max-lg:tw-w-full">
+            <a class="header-links" href="#about"> Sobre mi </a>
+            <a class="header-links" href="#beneficios"> Beneficios </a>
+            <a class="header-links" href="#trabajos"> Servicios </a>
+            <a class="header-links" href="#pricing"> Precios </a>
+            <a class="header-links" href="#contacto"> Contacto </a>
+        </div>
+    </div>
+
+    <button id="collapse-btn" onclick="toggleHeader(event)" class="bi bi-list tw-text-3xl tw-text-white lg:tw-hidden"></button>
+</header>
 
         <section
             class="hero-section tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-overflow-hidden max-md:tw-mt-[50px]"
