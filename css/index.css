@@ -46,34 +46,44 @@ header > .collapsible-header{
         /* width is handled by your JS (0vw to 60vw) */
 }
 
+/* --- PC / DESKTOP SETTINGS --- */
 @media (min-width: 1025px) {
     #collapsed-header-items {
-        /* Reset positioning from fixed back to normal flow */
-        position: relative !important; 
-        top: auto !important;
-        right: auto !important;
-        
-        /* Reset dimensions */
-        width: auto !important; 
-        height: auto !important;
-        
-        /* Reset layout to horizontal */
         display: flex !important;
-        flex-direction: row !important;
-        
-        /* Ensure it's always visible on PC */
+        position: static !important; /* Back to normal layout */
+        width: auto !important;
+        height: auto !important;
         opacity: 1 !important;
         visibility: visible !important;
-        pointer-events: auto !important;
-        
-        /* Remove mobile background/shadows */
-        background-color: transparent !important;
-        box-shadow: none !important;
+        flex-direction: row !important;
+        background: transparent !important;
+    }
+    
+    #collapse-btn {
+        display: none !important; /* Hide burger on PC */
+    }
+}
+
+/* --- MOBILE SETTINGS --- */
+@media (max-width: 1024px) {
+    #collapsed-header-items {
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 0; /* Start closed */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #000;
+        transition: width 0.3s ease;
+        z-index: 999;
     }
 
-    /* Hide the hamburger button on PC just in case */
-    #collapse-btn {
-        display: none !important;
+    /* When the JS toggles this class, the menu slides out */
+    #collapsed-header-items.is-open {
+        width: 70vw !important; 
+        opacity: 1 !important;
     }
 }
 
