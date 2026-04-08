@@ -25,7 +25,7 @@ header{
 }
 
 .headerstick{
-    position: sticky;
+    position: sticky !important;
   top: 0;
   padding: 10px 16px;
   background: #555;
