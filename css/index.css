@@ -34,21 +34,16 @@ header{
   color: #f1f1f1;
 }
 
-.headerscroll2 {
-    position: sticky;
-  top: 0;
-  background: #000000;
-  color: #f1f1f1;
-}
 
 header > .collapsible-header{
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-    background-color: inherit;
-    place-content: center;
-    overflow: hidden;
-    transition: width 0.3s ease;
+    position: fixed; 
+        top: 0;
+        right: 0;
+        height: 100vh; /* Make it full height for mobile */
+        flex-direction: column;
+        background-color: #000; /* Ensure it has a solid background */
+        z-index: 40;
+        /* width is handled by your JS (0vw to 60vw) */
 }
 
 .animated-collapse{

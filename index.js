@@ -19,24 +19,35 @@ function onHeaderClickOutside(e) {
 
 
 function toggleHeader() {
-    if (isHeaderCollapsed) {
-        // collapseHeaderItems.classList.remove("max-md:tw-opacity-0")
-        collapseHeaderItems.classList.add("opacity-100",)
-        collapseHeaderItems.style.width = "60vw"
-        collapseBtn.classList.remove("bi-list")
-        collapseBtn.classList.add("bi-x", "max-lg:tw-fixed")
-        isHeaderCollapsed = false
+    const collapseHeaderItems = document.getElementById("collapsed-header-items");
+    const collapseBtn = document.getElementById("collapse-btn");
 
-        setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 1)
+    if (isHeaderCollapsed) {
+        // OPEN MENU
+        collapseHeaderItems.classList.add("opacity-100");
+        collapseHeaderItems.style.width = "60vw"; // This triggers the transition
+        
+        collapseBtn.classList.remove("bi-list");
+        collapseBtn.classList.add("bi-x");
+        
+        isHeaderCollapsed = false;
+
+        // Increase timeout to 100ms to prevent mobile "ghost" clicks 
+        // from closing the menu immediately
+        setTimeout(() => {
+            window.addEventListener("click", onHeaderClickOutside);
+        }, 100);
 
     } else {
-        collapseHeaderItems.classList.remove("opacity-100")
-        collapseHeaderItems.style.width = "0vw"
-        collapseBtn.classList.remove("bi-x", "max-lg:tw-fixed")
-        collapseBtn.classList.add("bi-list")
-        isHeaderCollapsed = true
-        window.removeEventListener("click", onHeaderClickOutside)
-
+        // CLOSE MENU
+        collapseHeaderItems.classList.remove("opacity-100");
+        collapseHeaderItems.style.width = "0vw";
+        
+        collapseBtn.classList.remove("bi-x");
+        collapseBtn.classList.add("bi-list");
+        
+        isHeaderCollapsed = true;
+        window.removeEventListener("click", onHeaderClickOutside);
     }
 }
 
