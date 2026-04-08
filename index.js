@@ -18,38 +18,6 @@ function onHeaderClickOutside(e) {
 }
 
 
-function toggleHeader() {
-    const collapseHeaderItems = document.getElementById("collapsed-header-items");
-    const collapseBtn = document.getElementById("collapse-btn");
-
-    if (isHeaderCollapsed) {
-        // OPEN MENU
-        collapseHeaderItems.classList.add("opacity-100");
-        collapseHeaderItems.style.width = "60vw"; // This triggers the transition
-        
-        collapseBtn.classList.remove("bi-list");
-        collapseBtn.classList.add("bi-x");
-        
-        isHeaderCollapsed = false;
-
-        // Increase timeout to 100ms to prevent mobile "ghost" clicks 
-        // from closing the menu immediately
-        setTimeout(() => {
-            window.addEventListener("click", onHeaderClickOutside);
-        }, 100);
-
-    } else {
-        // CLOSE MENU
-        collapseHeaderItems.classList.remove("opacity-100");
-        collapseHeaderItems.style.width = "0vw";
-        
-        collapseBtn.classList.remove("bi-x");
-        collapseBtn.classList.add("bi-list");
-        
-        isHeaderCollapsed = true;
-        window.removeEventListener("click", onHeaderClickOutside);
-    }
-}
 
 
 
