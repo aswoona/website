@@ -36,52 +36,55 @@ header{
 
 
 
-/* 1. SHARED BASE STYLES (Keep it minimal) */
+/* --- 1. GLOBAL BASE (Shared) --- */
 header > .collapsible-header {
     display: flex;
-    gap: 1rem;
     background-color: inherit;
 }
 
-/* 2. MOBILE DRAWER (0px to 1024px) */
+/* --- 2. MOBILE DRAWER (Only < 1024px) --- */
 @media (max-width: 1024px) {
     #collapsed-header-items {
         position: fixed !important;
         top: 0;
-        right: -100%; /* Hidden off-screen */
+        right: -100% !important; /* Start off-screen */
         width: 80vw !important;
         height: 100vh !important;
         background: #000 !important;
-        z-index: 999 !important;
-        transition: right 0.4s ease-in-out; /* We animate RIGHT, not WIDTH */
+        z-index: 90 !important;
+        transition: right 0.4s ease-in-out !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 80px 20px;
-        overflow-y: auto; /* Allow scrolling if menu is long */
+        overflow-y: auto;
     }
 
+    /* Logic to slide in */
     body.nav-open #collapsed-header-items {
-        right: 0 !important; /* Slide into view */
-    }
-
-    body.nav-open #collapse-btn::before {
-        content: "\f659"; 
+        right: 0 !important;
     }
 }
 
-/* 3. DESKTOP RESET (1025px and up) */
+/* --- 3. DESKTOP RESET (PC > 1025px) --- */
 @media (min-width: 1025px) {
     #collapsed-header-items {
         position: static !important;
-        width: auto !important; /* Let it sit naturally in the header */
+        width: 100% !important; /* Take up the remaining header space */
         height: auto !important;
         display: flex !important;
-        flex-direction: row !important;
+        flex-direction: row !important; /* Side by side */
+        justify-content: space-around !important;
+        background: transparent !important;
         opacity: 1 !important;
         visibility: visible !important;
-        background: transparent !important;
-        right: auto !important;
-        overflow: visible !important; /* Don't clip content on PC */
+    }
+
+    /* RESET THE INNER DIV (The one with all the links) */
+    #collapsed-header-items > div {
+        flex-direction: row !important; /* Force links to stay in a row */
+        margin-top: 0 !important;
+        width: auto !important;
+        place-items: center !important;
     }
 
     #collapse-btn {

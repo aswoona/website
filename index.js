@@ -9,18 +9,18 @@ const collapseHeaderItems = document.getElementById("collapsed-header-items")
 
 
 
-function toggleHeader() {
+function toggleHeader(event) {
+    if (event) event.stopPropagation();
+    
     const btn = document.getElementById("collapse-btn");
     
-    // 1. Toggle 'nav-open' on the BODY (This triggers the CSS slide-in)
+    // Toggle the class on the BODY
     document.body.classList.toggle("nav-open");
 
-    // 2. Check if it's now open to update the icon
+    // Update the button icon
     if (document.body.classList.contains("nav-open")) {
         btn.classList.replace("bi-list", "bi-x");
-        
-        // Optional: Close when clicking outside
-        setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 100);
+        window.addEventListener("click", onHeaderClickOutside);
     } else {
         btn.classList.replace("bi-x", "bi-list");
         window.removeEventListener("click", onHeaderClickOutside);
@@ -31,7 +31,6 @@ function onHeaderClickOutside(e) {
     const menu = document.getElementById("collapsed-header-items");
     const btn = document.getElementById("collapse-btn");
 
-    // If the click is NOT on the menu or button, close it
     if (!menu.contains(e.target) && !btn.contains(e.target)) {
         document.body.classList.remove("nav-open");
         btn.classList.replace("bi-x", "bi-list");
