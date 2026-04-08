@@ -10,31 +10,32 @@ const collapseHeaderItems = document.getElementById("collapsed-header-items")
 
 
 function toggleHeader(event) {
+    // 1. Stop the click from closing the menu immediately
     if (event) event.stopPropagation();
-    
-    const btn = document.getElementById("collapse-btn");
-    
-    // Toggle the class on the BODY
+
+    // 2. Toggle the class on the BODY (This triggers the CSS)
     document.body.classList.toggle("nav-open");
 
-    // Update the button icon
+    const btn = document.getElementById("collapse-btn");
+
+    // 3. Update the icon
     if (document.body.classList.contains("nav-open")) {
         btn.classList.replace("bi-list", "bi-x");
-        window.addEventListener("click", onHeaderClickOutside);
+        // Only listen for "click outside" once it's open
+        setTimeout(() => window.addEventListener("click", closeOnOutsideClick), 100);
     } else {
         btn.classList.replace("bi-x", "bi-list");
-        window.removeEventListener("click", onHeaderClickOutside);
     }
 }
 
-function onHeaderClickOutside(e) {
+function closeOnOutsideClick(e) {
     const menu = document.getElementById("collapsed-header-items");
     const btn = document.getElementById("collapse-btn");
 
     if (!menu.contains(e.target) && !btn.contains(e.target)) {
         document.body.classList.remove("nav-open");
         btn.classList.replace("bi-x", "bi-list");
-        window.removeEventListener("click", onHeaderClickOutside);
+        window.removeEventListener("click", closeOnOutsideClick);
     }
 }
 
