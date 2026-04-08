@@ -36,33 +36,43 @@ header{
 
 
 
-@media (max-width: 1024px) {
-    header > .collapsible-header {
-        position: fixed !important; 
-        top: 0;
-        right: 0;
-        height: 100vh;
-        flex-direction: column;
-        background-color: #000;
-        z-index: 40;
-        /* Width is still handled by your JS */
-        
-        /* Optional: Add this to ensure it's hidden when width is 0 */
-        overflow: hidden; 
-        display: flex;
-    }
+header > .collapsible-header{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    background-color: inherit;
+    place-content: center;
+    overflow: hidden;
+    transition: width 0.3s ease;
 }
 
-/* For PC (Larger than 1024px) */
-@media (min-width: 1025px) {
-    header > .collapsible-header {
-        position: absolute !important; /* Resets it to its normal spot */
-        height: auto !important;
-        width: auto !important;
-        flex-direction: row !important;
-        background-color: transparent !important;
-        opacity: 1 !important;
+/* This targets ONLY screens larger than 1024px (PC/Laptop) */
+@media screen and (min-width: 1025px) {
+    header {
+        position: sticky !important; /* Keep the header itself sticky */
+        height: 60px !important;
+        width: 100% !important;
     }
+
+    /* This resets the dropdown container back to a normal horizontal bar */
+    header > .collapsible-header {
+        position: static !important;  /* CRITICAL: Breaks the 'fixed' sidebar behavior */
+        width: auto !important;       /* Let it take up only the space it needs */
+        height: auto !important;      /* Stop it from being 100vh */
+        opacity: 1 !important;        /* Always show on PC */
+        display: flex !important;     /* Ensure it's visible */
+        flex-direction: row !important; /* Items side-by-side */
+        background-color: transparent !important;
+        overflow: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Hide the mobile toggle button on PC */
+    #collapse-btn {
+        display: none !important;
+    }
+}
 
 .animated-collapse{
     transition: width 0.3s ease;
