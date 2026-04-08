@@ -51,6 +51,14 @@ function toggleHeader() {
     }
 }
 
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) {
+        const menu = document.getElementById("collapsed-header-items");
+        // Clear the inline styles so the Desktop CSS can take over
+        menu.style.width = "";
+        menu.style.opacity = "";
+    }
+});
 
 function responsive() {
     if (window.innerWidth > RESPONSIVE_WIDTH) {
