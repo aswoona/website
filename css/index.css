@@ -46,31 +46,38 @@ header > .collapsible-header{
     transition: width 0.3s ease;
 }
 
-/* This targets ONLY screens larger than 1024px (PC/Laptop) */
+/* 1. Desktop Reset (for PC screens) */
 @media screen and (min-width: 1025px) {
-    header {
-        position: sticky !important; /* Keep the header itself sticky */
-        height: 60px !important;
-        width: 100% !important;
-    }
-
-    /* This resets the dropdown container back to a normal horizontal bar */
     header > .collapsible-header {
-        position: static !important;  /* CRITICAL: Breaks the 'fixed' sidebar behavior */
-        width: auto !important;       /* Let it take up only the space it needs */
-        height: auto !important;      /* Stop it from being 100vh */
-        opacity: 1 !important;        /* Always show on PC */
-        display: flex !important;     /* Ensure it's visible */
-        flex-direction: row !important; /* Items side-by-side */
+        position: static !important;  /* CRITICAL: This takes it out of fixed/absolute mode */
+        right: auto !important;       /* Removes the 'stick to right' anchor */
+        height: auto !important;
+        width: 100% !important;       /* Let it fill the header horizontally */
+        flex-direction: row !important; /* Forces items into a single line */
         background-color: transparent !important;
+        display: flex !important;
+        justify-content: center !important; /* Centers your links */
         overflow: visible !important;
-        transform: none !important;
-        transition: none !important;
     }
 
-    /* Hide the mobile toggle button on PC */
     #collapse-btn {
-        display: none !important;
+        display: none !important; /* Hides the hamburger icon on PC */
+    }
+}
+
+/* 2. Mobile Drawer (Keep your working mobile fix here) */
+@media screen and (max-width: 1024px) {
+    header > .collapsible-header {
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 0vw; /* Hidden by default */
+        flex-direction: column;
+        background-color: #000;
+        z-index: 40;
+        transition: width 0.3s ease;
+        display: flex;
     }
 }
 
