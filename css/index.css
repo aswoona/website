@@ -38,7 +38,7 @@ header{
 
 /* --- MOBILE DRAWER (1024px and down) --- */
 @media (max-width: 1024px) {
-    #collapsed-header {
+    #collapsed-header-items {
         /* FIXED to the screen, not the header */
         position: fixed !important;
         top: 0 !important;
@@ -61,14 +61,14 @@ header{
     }
 
     /* OPEN STATE: When body has 'nav-open', slide it into view */
-    body.nav-open #collapsed-header {
+    body.nav-open #collapsed-header-items {
         transform: translateX(20vw) !important; /* Slides in, leaving 20% gap on the left */
     }
 }
 
 /* --- DESKTOP RESET (Keep this as is) --- */
 @media (min-width: 1025px) {
-    #collapsed-header {
+    #collapsed-header-items {
         position: static !important;
         transform: none !important;
         width: auto !important;
